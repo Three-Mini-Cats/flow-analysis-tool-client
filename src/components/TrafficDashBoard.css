@@ -1,0 +1,221 @@
+/* src/components/TrafficDashboard.css */
+
+:root {
+    --primary-bg-color: #f4f7f9;
+    --secondary-bg-color: #ffffff;
+    --font-color: #333;
+    --border-color: #e0e0e0;
+    --primary-accent-color: #007bff;
+    --primary-accent-hover: #0056b3;
+    --danger-color: #dc3545;
+    --danger-hover: #a71d2a;
+    --success-color: #28a745;
+    --warning-color: #fff3cd;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--primary-bg-color);
+    color: var(--font-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 2rem;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+    background: var(--secondary-bg-color);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.dashboard-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.status-bar {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.status-bar .running {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.status-bar .stopped {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-item label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.control-item input,
+.control-item select {
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.control-item input:focus,
+.control-item select:focus {
+    outline: none;
+    border-color: var(--primary-accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.control-item input:disabled,
+.control-item select:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.control-item.bpf-filter {
+    grid-column: 1 / -1; 
+}
+
+.action-button {
+    grid-column: -2 / -1; 
+}
+
+.action-button button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: white;
+    background-color: var(--primary-accent-color);
+}
+
+.action-button button:hover {
+    background-color: var(--primary-accent-hover);
+}
+
+.action-button button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.action-button .stop-button {
+    background-color: var(--danger-color);
+}
+
+.action-button .stop-button:hover {
+    background-color: var(--danger-hover);
+}
+
+.flow-data-section h3 {
+    margin-bottom: 1rem;
+}
+
+.no-data-placeholder {
+    text-align: center;
+    padding: 4rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    color: #888;
+}
+
+
+/* FlowTable.jsx Styles */
+.flow-table-container {
+    overflow-y: auto;  
+    max-height: 500px; 
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+thead th {
+    position: sticky;
+    top: 0;           
+    background-color: #f8f9fa;
+    font-weight: 600;
+    z-index: 1; 
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+tbody tr.warning-row {
+    background-color: var(--warning-color);
+}
+
+td strong {
+    color: var(--primary-accent-color);
+}
+
+.download-button-container {
+    text-align: right;
+    margin-top: 1.5rem;
+}
+
+.download-button-container button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: white;
+    background-color: var(--success-color); 
+}
+
+.download-button-container button:hover {
+    background-color: #218838;
+}
+
+.download-button-container button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
