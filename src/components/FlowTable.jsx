@@ -1,3 +1,5 @@
+import React from 'react';
+
 const FlowTable = ({ flows, isRunning }) => {
     const sortedFlows = [...flows].sort((a, b) => b.throughputBps - a.throughputBps);
 
@@ -26,7 +28,9 @@ const FlowTable = ({ flows, isRunning }) => {
         const headers = [
             "Flow ID",
             "Source IP",
+            "Source Port",
             "Destination IP",
+            "Destination Port",
             "Protocol",
             "Duration (ms)",
             "Tx Packets",
@@ -40,7 +44,9 @@ const FlowTable = ({ flows, isRunning }) => {
         const rows = sortedFlows.map(flow => [
             `"${flow.flowId}"`,
             flow.srcIp,
+            flow.srcPort,
             flow.dstIp,
+            flow.dstPort,
             flow.protocol,
             (flow.durationSec * 1000).toFixed(3),
             flow.txPackets,
@@ -72,7 +78,9 @@ const FlowTable = ({ flows, isRunning }) => {
                 <thead>
                     <tr>
                         <th>Source IP</th>
+                        <th>Source Port</th>
                         <th>Destination IP</th>
+                        <th>Destination Port</th>
                         <th>Protocol</th>
                         <th>지속 시간 (ms)</th>
                         <th>Tx/Rx 패킷</th>
@@ -85,7 +93,9 @@ const FlowTable = ({ flows, isRunning }) => {
                     {sortedFlows.map((flow) => (
                         <tr key={flow.flowId} className={flow.retransmits > 0 ? 'warning-row' : ''}>
                             <td>{flow.srcIp}</td>
+                            <td>{flow.srcPort}</td>
                             <td>{flow.dstIp}</td>
+                            <td>{flow.dstPort}</td>
                             <td>{flow.protocol}</td>
                             <td>{(flow.durationSec * 1000).toFixed(3)} ms</td>
                             <td>{flow.txPackets} / {flow.rxPackets}</td>
@@ -96,7 +106,8 @@ const FlowTable = ({ flows, isRunning }) => {
                     ))}
                 </tbody>
             </table>
-            {(flows.length > 0 || isRunning) && ( // 실행 완료 후 CSV 파일 다운 가능
+            
+            {(flows.length > 0 || isRunning) && (
                 <div className="download-button-container">
                     <button onClick={handleDownloadCsv} disabled={isRunning}>
                         CSV 다운로드 💾
